@@ -3,16 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   print_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:53:12 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/15 17:40:49 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:12:53 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	first(t_cub *cub, t_ray *ray, double *start, int *side)
+void	ceiling_color(t_cub *cub, t_ray *ray, double *start)
+{
+	while (*start < ray->start)
+	{
+		if (*start >= 0 && *start <= CUB_H)
+			my_mlx_pixel_put(&cub->frame, CUB_W - ray->i - 1,
+				*start, cub->color[CEILING]);
+		*start += 1;
+	}
+}
+
+void	floor_color(t_cub *cub, t_ray *ray, double *start)
+{
+	ray->start = *start + ray->size * 2;
+	while (ray->start <= CUB_H)
+	{
+		my_mlx_pixel_put(&cub->frame, CUB_W - ray->i - 1,
+			ray->start, cub->color[FLOOR]);
+		ray->start++;
+	}
+}
+
+void	textures(t_cub *cub, t_ray *ray, double *start, int *side)
 {
 	double	tmp_start;
 	int		tmp_side;
@@ -28,7 +50,7 @@ void	first(t_cub *cub, t_ray *ray, double *start, int *side)
 	*side = tmp_side;
 }
 
-void	second(t_cub *cub, t_ray *ray, double *start, int *side)
+void	reflections(t_cub *cub, t_ray *ray, double *start, int *side)
 {
 	double	tmp_start;
 	int		tmp_side;
@@ -61,28 +83,20 @@ void	print_textures(t_cub *cub, t_ray ray)
 	start = 0;
 	ray.size = ray.end - ray.start;
 	side = get_side(ray);
-	while (start < ray.start)
-	{
-		if (start >= 0 && start <= CUB_H)
-			my_mlx_pixel_put(&cub->frame, CUB_W - ray.i - 1,
-				start, cub->color[CEILING]);
-		start++;
-	}
+	ceiling_color(cub, &ray, &start);
 	start = ray.start;
+	if (ray.start < 0)
+		ray.start = 0;
+	if (ray.end > CUB_H)
+		ray.end = CUB_H;
 	while (ray.start <= ray.end)
 	{
 		if (ray.start >= 0 && ray.start <= CUB_H)
-			first(cub, &ray, &start, &side);
+			textures(cub, &ray, &start, &side);
 		if (start * 2 + ray.size * 2 - ray.start >= 0 && start * 2
 			+ ray.size * 2 - ray.start <= CUB_H)
-			second(cub, &ray, &start, &side);
+			reflections(cub, &ray, &start, &side);
 		ray.start++;
 	}
-	ray.start = start + ray.size * 2;
-	while (ray.start <= CUB_H)
-	{
-		my_mlx_pixel_put(&cub->frame, CUB_W - ray.i - 1,
-			ray.start, cub->color[FLOOR]);
-		ray.start++;
-	}
+	floor_color(cub, &ray, &start);
 }

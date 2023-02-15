@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_pixel2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:20:22 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/13 20:20:45 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:21:35 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	my_mlx_pixel_put_drk(t_data *data, int x, int y)
 
 unsigned int	get_image_color(t_data *data, int x, int y)
 {
+	if (x > data->x_size)
+		x = data->x_size;
+	if (y > data->y_size)
+		y = data->y_size;
 	return (*(unsigned int *)(data->addr + (y * data->line_length
 			+ x * (data->bits_per_pixel / 8))));
 }

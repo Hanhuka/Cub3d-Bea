@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_wall.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:12:39 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/13 20:13:03 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:17:17 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	hit_wall(t_cub *cub, t_ray *ray)
 {
-	ray->hitWall = 0;
-	while (!(ray->hitWall))
+	ray->hit_wall = 0;
+	while (!(ray->hit_wall))
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -30,7 +30,7 @@ void	hit_wall(t_cub *cub, t_ray *ray)
 			ray->side = 1;
 		}
 		if (cub->map[ray->map_y][ray->map_x] == '1')
-			ray->hitWall = 1;
+			ray->hit_wall = 1;
 	}
 	if (ray->side == 0)
 		ray->perpendicular = ray->side_dist_x - ray->delta_dist_x;

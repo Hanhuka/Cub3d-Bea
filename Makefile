@@ -1,12 +1,12 @@
-	# **************************************************************************** #
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+         #
+#    By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2022/11/08 16:18:15 by ralves-g         ###   ########.fr        #
+#    Updated: 2023/02/15 21:51:16 by hanhuka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,13 @@ SRCS_		=	cub3d.c \
 				my_mlx_pixel2.c \
 				gnl/get_next_line.c \
 				gnl/get_next_line_utils.c \
+				raycasting/raycasting.c \
 				raycasting/calc.c \
 				raycasting/search.c \
 				raycasting/hit_wall.c \
 				raycasting/rotate.c \
 				raycasting/ray_key.c \
-				raycasting/raycasting.c \
+				raycasting/hooks_and_inits.c \
 				raycasting/mouse_hook.c \
 				raycasting/move_mouse.c \
 				raycasting/move_player.c \
@@ -65,10 +66,6 @@ $(NAME): $(DEPS) $(OBJS)
 
 ./minilibx_linux/libmlx_Linux.a:
 	make -C mlx-linux/
-
-#bonus:		$(SRCS_B) $(OBJS_B)
-#			$(CC) $(CFLAGS) $(SRCS_B) -o $(NAME_B)
-#			$(CC) $(CFLAGS) $(SRCS_B) -c
 
 $(_OBJ):
 	mkdir $@

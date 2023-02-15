@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/13 19:46:20 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:04:33 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int	raycasting_key(int key, t_cub *cub)
 		cub->sft = 3;
 	show_hide_mouse(key, cub);
 	if (key == KEY_ESC)
-		close_win();
+		close_win(cub);
 	return (0);
 }
