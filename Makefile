@@ -6,7 +6,7 @@
 #    By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2023/02/16 14:39:41 by ralves-g         ###   ########.fr        #
+#    Updated: 2023/02/16 15:40:11 by ralves-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS_		=	cub3d.c \
 				close.c \
 				init_textures.c \
 				print_textures.c \
+				flashlight.c \
 				image_printing.c \
 				minimap.c \
 				minimap2.c \

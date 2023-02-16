@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:56:09 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 14:35:47 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:18:05 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	ray_main(t_cub *cub)
 	cub->d = 0;
 	cub->r = 0;
 	cub->m = 0;
+	cub->f = 0;
+	cub->l = 0;
+	cub->battery = 100;
 	cub->a_r = 0;
 	cub->a_l = 0;
 	cub->h = 0;

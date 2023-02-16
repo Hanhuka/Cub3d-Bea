@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 15:04:20 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:21:47 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_E 101
+# define KEY_F 102
+# define KEY_L 108
 # define KEY_R 114
 # define KEY_M 109
 # define KEY_ESC 65307
@@ -157,6 +159,10 @@ typedef struct s_cub {
 	int					d;
 	int					r;
 	int					m;
+	int					f;
+	int					l;
+	double				f_euclidean;
+	int					battery;
 	int					a_r;
 	int					a_l;
 	int					up;
@@ -166,6 +172,8 @@ typedef struct s_cub {
 	int					sft;
 	double				mouse;
 	int					h;
+	unsigned long		t_start;
+	unsigned long		t_now;
 	t_keys				key;
 }	t_cub;
 
@@ -308,4 +316,9 @@ void			draw_player_s(t_cub *cub, int height);
 void			minimap_loop_s(t_cub *cub, t_ray *ray);
 void			minimap_raycasting_s(t_cub *cub, t_ray *ray);
 
+//flashlight.c
+double			flashlight_euclidean(t_cub *cub, t_ray *ray);
+void			print_battery(t_cub *cub);
+unsigned long	time_ms(void);
+void			count_battery(t_cub *cub);
 #endif 

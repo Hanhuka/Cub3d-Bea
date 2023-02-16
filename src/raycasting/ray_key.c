@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 15:00:14 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:25:58 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ void	toggles(int key, t_cub *cub)
 		cub->m = 1;
 	else if (key == KEY_M && cub->m)
 		cub->m = 0;
+	else if (key == KEY_F && !cub->f && cub->l)
+		cub->f = 1;
+	else if (key == KEY_F && cub->f && cub->l)
+		cub->f = 0;
+	else if (key == KEY_L && !cub->l)
+		cub->l = 1;
+	else if (key == KEY_L && cub->l)
+	{
+		cub->l = 0;
+		cub->f = 0;
+	}
 }
 
 int	key_up(int key, t_cub *cub)

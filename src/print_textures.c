@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:53:12 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 01:36:15 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 18:38:26 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	floor_color(t_cub *cub, t_ray *ray)
 
 void	textures(t_cub *cub, t_ray *ray, double *start, int *side)
 {
-	double	tmp_start;
-	int		tmp_side;
+	double			tmp_start;
+	int				tmp_side;
 
 	tmp_start = *start;
 	tmp_side = *side;
@@ -48,6 +48,16 @@ void	textures(t_cub *cub, t_ray *ray, double *start, int *side)
 			- cub->wall_t[tmp_side].x_size * ray->wall_x,
 			cub->wall_t[tmp_side].y_size
 			* ((ray->start - tmp_start + 1) / ray->size)));
+	if ((((CUB_W - ray->i - 1 - CUB_W / 2) * (CUB_W - ray->i - 1
+					- CUB_W / 2) + (ray->start - CUB_H / 2) * (ray->start
+					- CUB_H / 2) >= 175 * 175) || (!cub->f || !cub->battery))
+		&& cub->l)
+	{
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+	}
 	*start = tmp_start;
 	*side = tmp_side;
 }
@@ -79,8 +89,8 @@ void	reflections(t_cub *cub, t_ray *ray, double *start, int *side)
 
 void	print_textures(t_cub *cub, t_ray ray)
 {
-	double	start;
-	int		side;
+	double			start;
+	int				side;
 
 	start = 0;
 	ray.size = ray.end - ray.start;

@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/16 15:00:53 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:26:59 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int	raycasting_loop(t_cub *cub)
 		minimap_loop(cub, &ray);
 	else
 		minimap_loop_s(cub, &ray);
+	if (cub->l)
+		print_battery(cub);
 	mlx_clear_window(cub->mlx, cub->mlx_w);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->frame.img, 0, 0);
 	mlx_destroy_image(cub->mlx, cub->frame.img);
