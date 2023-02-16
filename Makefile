@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+         #
+#    By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2023/02/15 22:33:39 by hanhuka          ###   ########.fr        #
+#    Updated: 2023/02/16 14:39:41 by ralves-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address -g
 RM			=	rm -f
 
 NAME		=	cub3d
@@ -29,9 +29,12 @@ SRCS_		=	cub3d.c \
 				my_mlx_pixel.c \
 				my_mlx_pixel2.c \
 				doors.c \
+				minimap_static.c \
+				minimap_static2.c \
 				gnl/get_next_line.c \
 				gnl/get_next_line_utils.c \
 				raycasting/raycasting.c \
+				raycasting/minimap_static3.c \
 				raycasting/calc.c \
 				raycasting/search.c \
 				raycasting/hit_wall.c \

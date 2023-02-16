@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ray_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 00:40:51 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 15:00:14 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+void	toggles(int key, t_cub *cub)
+{
+	if (key == KEY_E)
+		open_close_door(cub);
+	else if (key == KEY_R && !cub->r)
+		cub->r = 1;
+	else if (key == KEY_R && cub->r)
+		cub->r = 0;
+	else if (key == KEY_M && !cub->m)
+		cub->m = 1;
+	else if (key == KEY_M && cub->m)
+		cub->m = 0;
+}
 
 int	key_up(int key, t_cub *cub)
 {
@@ -53,12 +67,7 @@ void	verif_key(int key, t_cub *cub)
 		cub->up = 1;
 	else if (key == KEY_DW)
 		cub->dw = 1;
-	else if (key == KEY_E)
-		open_close_door(cub);
-	else if (key == KEY_R && !cub->r)
-		cub->r = 1;
-	else if (key == KEY_R && cub->r)
-		cub->r = 0;
+	toggles(key, cub);
 }
 
 void	show_hide_mouse(int key, t_cub *cub)

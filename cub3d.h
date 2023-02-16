@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 00:38:47 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 15:04:20 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define C_SO 2
 # define C_WE 3
 
-# define ROT 0.05
+# define ROT 0.01
 # define MOVE 0.05
 
 # define CUB_W 1000
@@ -52,6 +52,7 @@
 # define KEY_D 100
 # define KEY_E 101
 # define KEY_R 114
+# define KEY_M 109
 # define KEY_ESC 65307
 # define ARROW_R 65363
 # define ARROW_L 65361
@@ -155,6 +156,7 @@ typedef struct s_cub {
 	int					s;
 	int					d;
 	int					r;
+	int					m;
 	int					a_r;
 	int					a_l;
 	int					up;
@@ -290,5 +292,20 @@ int				*mp_unit(void);
 
 //doors.c
 void			open_close_door(t_cub *cub);
+
+//minimap_static.c
+void			minimap_wall_pixel_s(t_cub *cub, t_coords c, t_wall w, \
+				int mode);
+void			print_minimap_wall_s(t_cub *cub, int m_x, int m_y);
+void			print_minimap_s(t_cub *cub);
+void			print_map_door_s(t_cub *cub);
+void			print_map_door2_s(t_cub *cub, int m_x, int m_y, char chr);
+
+//minimap_static2.c
+void			draw_player_s(t_cub *cub, int height);
+
+//minimap_static3.c
+void			minimap_loop_s(t_cub *cub, t_ray *ray);
+void			minimap_raycasting_s(t_cub *cub, t_ray *ray);
 
 #endif 

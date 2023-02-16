@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/16 00:33:25 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 15:00:53 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	minimap_loop(t_cub *cub, t_ray *ray)
 {
+	print_minimap(cub);
 	ray->i = -1;
 	cub->mp_color = rgb_spectrum();
 	while (++ray->i < CUB_W)
@@ -105,8 +106,10 @@ int	raycasting_loop(t_cub *cub)
 		raycasting(cub, &ray);
 		print_textures(cub, ray);
 	}
-	print_minimap(cub);
-	minimap_loop(cub, &ray);
+	if (!cub->m)
+		minimap_loop(cub, &ray);
+	else
+		minimap_loop_s(cub, &ray);
 	mlx_clear_window(cub->mlx, cub->mlx_w);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->frame.img, 0, 0);
 	mlx_destroy_image(cub->mlx, cub->frame.img);

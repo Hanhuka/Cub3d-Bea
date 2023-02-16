@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 14:44:43 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/15 22:58:50 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:21:16 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,6 @@ void	draw_player(t_cub *cub, int height)
 		w += 0.3;
 	}
 }
-
-// void	print_minimap_wall_fill(t_cub *cub, t_coords c, t_wall w, int offset)
-// {
-// 	double	new_x;
-// 	double	new_y;
-
-// 	new_x = (c.x + offset - cub->pos_x * (*mp_unit())) * cos(w.angle)
-// 		- (c.y + offset - cub->pos_y * (*mp_unit())) * sin(w.angle);
-// 	new_y = (c.x + offset - cub->pos_x * (*mp_unit())) * sin(w.angle)
-// 		+ (c.y + offset - cub->pos_y * (*mp_unit())) * cos(w.angle);
-// 	if ((cub->tab || (new_x * new_x + new_y * new_y <= MAP_RADIUS * MAP_RADIUS))
-// 		&& check_borders(new_x + cub->mp_x, new_y + cub->mp_y))
-// 	{
-// 		my_mlx_pixel_put(&(cub->frame),
-// 			new_x + cub->mp_x, new_y + cub->mp_y, 0);
-// 	}
-// }
 
 void	minimap_wall_pixel(t_cub *cub, t_coords c, t_wall w, int mode)
 {
