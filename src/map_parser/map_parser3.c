@@ -6,7 +6,7 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:41:27 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/15 23:56:24 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 22:15:51 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	check_map(t_cub *cub)
 		{
 			if ((cub->map[y][x] == '0' || cub->map[y][x] == 'N'
 				|| cub->map[y][x] == 'S' || cub->map[y][x] == 'W'
-				|| cub->map[y][x] == 'E' || cub->map[y][x] == 'D')
-					&& (check_coords(cub, x, y)))
+				|| cub->map[y][x] == 'E' || cub->map[y][x] == 'D'
+				|| cub->map[y][x] == 'C') && (check_coords(cub, x, y)))
 			{
 				printf("Error\nMap is not correcty configured\nStopped at point");
 				printf(" [%d][%d]\n", y, x);

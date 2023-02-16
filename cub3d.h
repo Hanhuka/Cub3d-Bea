@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 18:21:47 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/16 23:37:32 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "get_next_line.h"
 # include "mlx-linux/mlx.h"
 
+# define DOOR_TEXTURE "textures/gate_3.xpm"
 # define CEILING 1
 # define FLOOR 0
 
@@ -36,13 +37,7 @@
 
 //MINIMAP
 # define MAP_RADIUS 100
-# define MAP_UNIT 10
-// # define MAP_X_CENTER 800
-// # define MAP_Y_CENTER 200
 # define MAP_OUTLINE 5
-// # define MAP_OUTL_CLR 0xFFC500FF
-# define MAP_OUTL_CLR 0x00000099
-# define PLAYER_RADIUS 5
 # define OFFSET 2
 
 //KEYS
@@ -124,7 +119,8 @@ typedef struct s_ray{
 	int				start;
 	int				end;
 	int				side;
-
+	int				t_walls;
+	int				t_walls_parse;
 	double			wall_x;
 	double			wall_hit;
 	double			wall_hit_x;
@@ -153,6 +149,8 @@ typedef struct s_cub {
 	int					mp_u;
 	double				mp_a;
 	int					mp_color;
+	int					parsing_doors;
+	t_data				doors;
 	int					w;
 	int					a;
 	int					s;
@@ -184,7 +182,7 @@ void			print_vars(t_cub cub);
 //raycasting.c
 int				get_side(t_ray ray);
 int				raycasting_loop(t_cub *cub);
-void			raycasting(t_cub *cub, t_ray *ray);
+void			raycasting(t_cub *cub, t_ray *ray, int opt);
 void			minimap_raycasting(t_cub *cub, t_ray *ray);
 
 //map_parser.c
@@ -286,7 +284,10 @@ void			free_textures(t_cub *cub);
 int				init_textures(t_cub *cub);
 
 //print_textures.c
+void			ceiling_color(t_cub *cub, t_ray *ray, double *start);
+void			floor_color(t_cub *cub, t_ray *ray);
 void			print_textures(t_cub *cub, t_ray ray);
+void			reflections(t_cub *cub, t_ray *ray, double *start, int *side);
 
 //calc.c
 void			calc_side_dist(t_ray *ray, t_cub *cub);
@@ -294,6 +295,8 @@ void			calc_delta_dist(t_ray *ray);
 
 //hit_wall.c
 void			hit_wall(t_cub *cub, t_ray *ray);
+void			hit_t_wall(t_cub *cub, t_ray *ray);
+void			hit_m_wall(t_cub *cub, t_ray *ray);
 
 //pseudo_global.c
 int				*mp_unit(void);
@@ -321,4 +324,11 @@ double			flashlight_euclidean(t_cub *cub, t_ray *ray);
 void			print_battery(t_cub *cub);
 unsigned long	time_ms(void);
 void			count_battery(t_cub *cub);
-#endif 
+
+//print_transparent
+void			print_textures_t(t_cub *cub, t_ray ray);
+void			textures_t(t_cub *cub, t_ray *ray, double *start);
+void			reflections_t(t_cub *cub, t_ray *ray, double *start);
+void			transparency_loop(t_cub *cub, t_ray *ray);
+
+#endif

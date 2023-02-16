@@ -6,11 +6,37 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:51:49 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/15 21:06:26 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 23:35:51 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	doors(t_cub *cub)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	cub->parsing_doors = 1;
+	while (cub->map[++y])
+	{
+		x = -1;
+		while (cub->map[y][++x])
+			if (cub->map[y][x] == 'D')
+				cub->parsing_doors = 1;
+	}
+	if (!cub->parsing_doors)
+		return (0);
+	cub->doors.img = mlx_xpm_file_to_image(cub->mlx, DOOR_TEXTURE,
+			&cub->doors.x_size, &cub->doors.y_size);
+	if (!cub->doors.img)
+		return (1);
+	cub->doors.addr = mlx_get_data_addr(cub->doors.img,
+			&cub->doors.bits_per_pixel, &cub->doors.line_length,
+			&cub->doors.endian);
+	return (0);
+}
 
 void	free_textures(t_cub *cub)
 {
@@ -52,6 +78,8 @@ int	init_textures(t_cub *cub)
 				&cub->wall_t[i].endian);
 		i++;
 	}
+	if (doors(cub))
+		return (error_init_textures(cub));
 	free_textures_char(*cub);
 	return (0);
 }

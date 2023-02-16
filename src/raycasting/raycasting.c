@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/16 18:26:59 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/16 23:31:46 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	minimap_loop(t_cub *cub, t_ray *ray)
 	cub->mp_color = rgb_spectrum();
 	while (++ray->i < CUB_W)
 	{
-		raycasting(cub, ray);
+		raycasting(cub, ray, 2);
 		minimap_raycasting(cub, ray);
 	}
 	print_map_door(cub);
@@ -55,14 +55,19 @@ void	minimap_raycasting(t_cub *cub, t_ray *ray)
 	draw_vector(cub, -0.66 * ray->camera_x, -1, size * (*mp_unit()));
 }
 
-void	raycasting(t_cub *cub, t_ray *ray)
+void	raycasting(t_cub *cub, t_ray *ray, int opt)
 {
 	ray->camera_x = 2 * ray->i / (double)CUB_W - 1;
 	ray->ray_dir_x = cub->dir_x + cub->plane_x * ray->camera_x;
 	ray->ray_dir_y = cub->dir_y + cub->plane_y * ray->camera_x;
 	calc_delta_dist(ray);
 	calc_side_dist(ray, cub);
-	hit_wall(cub, ray);
+	if (!opt)
+		hit_wall(cub, ray);
+	else if (opt == 1)
+		hit_t_wall(cub, ray);
+	else
+		hit_m_wall(cub, ray);
 	ray->line_h = (int)(CUB_H / ray->perpendicular);
 	ray->start = (-ray->line_h + cub->h) / 2 + CUB_H / 2;
 	ray->end = (ray->line_h + cub->h) / 2 + CUB_H / 2;
@@ -103,8 +108,9 @@ int	raycasting_loop(t_cub *cub)
 	create_image(cub, &cub->frame, CUB_W, CUB_H);
 	while (++ray.i < CUB_W && !cub->tab)
 	{
-		raycasting(cub, &ray);
+		raycasting(cub, &ray, 0);
 		print_textures(cub, ray);
+		transparency_loop(cub, &ray);
 	}
 	if (!cub->m)
 		minimap_loop(cub, &ray);

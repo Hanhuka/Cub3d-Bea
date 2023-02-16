@@ -6,7 +6,7 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:13:20 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/15 23:57:33 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 22:12:28 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	check_line(char *line, int *player)
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != ' ' && \
 		line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
-			&& line[i] != 'D')
+			&& line[i] != 'D' && line[i] != 'C')
 		{
 			printf("Error\nMap contains at least one invalid character ");
 			printf("'%C'\n", line[i]);

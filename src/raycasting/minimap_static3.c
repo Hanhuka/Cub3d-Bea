@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_static3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:36:27 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 15:00:30 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:57:31 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	minimap_loop_s(t_cub *cub, t_ray *ray)
 	cub->mp_color = rgb_spectrum();
 	while (++ray->i < CUB_W)
 	{
-		raycasting(cub, ray);
+		raycasting(cub, ray, 2);
 		minimap_raycasting_s(cub, ray);
 	}
 	print_map_door_s(cub);
