@@ -6,7 +6,7 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:53:12 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/15 21:12:53 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 01:36:15 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ void	ceiling_color(t_cub *cub, t_ray *ray, double *start)
 	}
 }
 
-void	floor_color(t_cub *cub, t_ray *ray, double *start)
+void	floor_color(t_cub *cub, t_ray *ray)
 {
-	ray->start = *start + ray->size * 2;
-	while (ray->start <= CUB_H)
+	int	s_start;
+
+	s_start = ray->end;
+	while (s_start <= CUB_H)
 	{
 		my_mlx_pixel_put(&cub->frame, CUB_W - ray->i - 1,
-			ray->start, cub->color[FLOOR]);
-		ray->start++;
+			s_start, cub->color[FLOOR]);
+		s_start++;
 	}
 }
 
@@ -84,6 +86,7 @@ void	print_textures(t_cub *cub, t_ray ray)
 	ray.size = ray.end - ray.start;
 	side = get_side(ray);
 	ceiling_color(cub, &ray, &start);
+	floor_color(cub, &ray);
 	start = ray.start;
 	if (ray.start < 0)
 		ray.start = 0;
@@ -94,9 +97,8 @@ void	print_textures(t_cub *cub, t_ray ray)
 		if (ray.start >= 0 && ray.start <= CUB_H)
 			textures(cub, &ray, &start, &side);
 		if (start * 2 + ray.size * 2 - ray.start >= 0 && start * 2
-			+ ray.size * 2 - ray.start <= CUB_H)
+			+ ray.size * 2 - ray.start <= CUB_H && cub->r)
 			reflections(cub, &ray, &start, &side);
 		ray.start++;
 	}
-	floor_color(cub, &ray, &start);
 }

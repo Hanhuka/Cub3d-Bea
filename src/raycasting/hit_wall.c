@@ -6,7 +6,7 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:12:39 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/15 21:17:17 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/15 22:28:29 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	hit_wall(t_cub *cub, t_ray *ray)
 			ray->map_y += ray->steps_y;
 			ray->side = 1;
 		}
-		if (cub->map[ray->map_y][ray->map_x] == '1')
+		if (cub->map[ray->map_y][ray->map_x] == '1'
+			|| cub->map[ray->map_y][ray->map_x] == 'D')
 			ray->hit_wall = 1;
 	}
 	if (ray->side == 0)

@@ -6,7 +6,7 @@
 #    By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2023/02/15 21:51:16 by hanhuka          ###   ########.fr        #
+#    Updated: 2023/02/15 22:33:39 by hanhuka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS_		=	cub3d.c \
 				testing_prints.c \
 				my_mlx_pixel.c \
 				my_mlx_pixel2.c \
+				doors.c \
 				gnl/get_next_line.c \
 				gnl/get_next_line_utils.c \
 				raycasting/raycasting.c \

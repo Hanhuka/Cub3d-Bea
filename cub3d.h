@@ -6,7 +6,7 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/15 21:47:46 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 00:38:47 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_E 101
+# define KEY_R 114
 # define KEY_ESC 65307
-# define KEY_R 65363
-# define KEY_L 65361
+# define ARROW_R 65363
+# define ARROW_L 65361
 # define KEY_UP 65362
 # define KEY_DW 65364
 # define KEY_TAB 65289
@@ -153,7 +155,8 @@ typedef struct s_cub {
 	int					s;
 	int					d;
 	int					r;
-	int					l;
+	int					a_r;
+	int					a_l;
 	int					up;
 	int					dw;
 	int					tab;
@@ -239,6 +242,7 @@ void			my_mlx_pixel_put_inv(t_data *data, int x, int y);
 //my_mlx_pixel2.c
 unsigned int	get_image_color(t_data *data, int x, int y);
 void			my_mlx_pixel_put_drk(t_data *data, int x, int y);
+void			my_mlx_pixel_put_door(t_data *data, int x, int y);
 
 //ray_key.c
 int				key_up(int key, t_cub *cub);
@@ -264,6 +268,8 @@ void			minimap_wall_pixel(t_cub *cub, t_coords c, t_wall w, int mode);
 void			print_minimap_wall(t_cub *cub, int m_x, int m_y);
 void			print_outline(t_cub *cub);
 void			print_minimap(t_cub *cub);
+void			print_map_door(t_cub *cub);
+void			print_map_door2(t_cub *cub, int m_x, int m_y, char chr);
 
 //init_textures.c
 void			free_textures(t_cub *cub);
@@ -281,5 +287,8 @@ void			hit_wall(t_cub *cub, t_ray *ray);
 
 //pseudo_global.c
 int				*mp_unit(void);
+
+//doors.c
+void			open_close_door(t_cub *cub);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/15 21:47:19 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 00:33:25 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	minimap_loop(t_cub *cub, t_ray *ray)
 		raycasting(cub, ray);
 		minimap_raycasting(cub, ray);
 	}
+	print_map_door(cub);
 	draw_player(cub, *mp_unit() + 5);
 }
 
@@ -97,7 +98,7 @@ int	raycasting_loop(t_cub *cub)
 	if (!cub->alt)
 		move_mouse(cub);
 	move(cub, cub->w - cub->s, cub->a - cub->d);
-	rotate(cub, cub->r - cub->l, cub->up - cub->dw);
+	rotate(cub, cub->a_r - cub->a_l, cub->up - cub->dw);
 	create_image(cub, &cub->frame, CUB_W, CUB_H);
 	while (++ray.i < CUB_W && !cub->tab)
 	{

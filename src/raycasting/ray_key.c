@@ -6,7 +6,7 @@
 /*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/15 21:04:33 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/16 00:40:51 by hanhuka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	key_up(int key, t_cub *cub)
 		cub->a = 0;
 	else if (key == KEY_D)
 		cub->d = 0;
-	else if (key == KEY_R)
-		cub->r = 0;
-	else if (key == KEY_L)
-		cub->l = 0;
+	else if (key == ARROW_R)
+		cub->a_r = 0;
+	else if (key == ARROW_L)
+		cub->a_l = 0;
 	else if (key == KEY_UP)
 		cub->up = 0;
 	else if (key == KEY_DW)
@@ -45,14 +45,20 @@ void	verif_key(int key, t_cub *cub)
 		cub->a = 1;
 	else if (key == KEY_D)
 		cub->d = 1;
-	else if (key == KEY_R)
-		cub->r = 1;
-	else if (key == KEY_L)
-		cub->l = 1;
+	else if (key == ARROW_R)
+		cub->a_r = 1;
+	else if (key == ARROW_L)
+		cub->a_l = 1;
 	else if (key == KEY_UP)
 		cub->up = 1;
 	else if (key == KEY_DW)
 		cub->dw = 1;
+	else if (key == KEY_E)
+		open_close_door(cub);
+	else if (key == KEY_R && !cub->r)
+		cub->r = 1;
+	else if (key == KEY_R && cub->r)
+		cub->r = 0;
 }
 
 void	show_hide_mouse(int key, t_cub *cub)
