@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 18:25:58 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:52:53 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	toggles(int key, t_cub *cub)
 
 int	key_up(int key, t_cub *cub)
 {
+	if (*starting_screen())
+		return (1);
 	if (key == KEY_W)
 		cub->w = 0;
 	else if (key == KEY_S)
@@ -100,6 +102,15 @@ void	show_hide_mouse(int key, t_cub *cub)
 
 int	raycasting_key(int key, t_cub *cub)
 {
+	if (*starting_screen())
+	{
+		if (key == KEY_R)
+		{
+			mlx_mouse_hide(cub->mlx, cub->mlx_w);
+			*starting_screen() = 0;
+		}
+		return (1);
+	}
 	verif_key(key, cub);
 	if (key == KEY_TAB)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 23:37:32 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/17 18:06:50 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "get_next_line.h"
 # include "mlx-linux/mlx.h"
 
+# define BACKGROUND "textures/Background.xpm"
 # define DOOR_TEXTURE "textures/gate_3.xpm"
 # define CEILING 1
 # define FLOOR 0
@@ -33,7 +34,7 @@
 # define MOVE 0.05
 
 # define CUB_W 1000
-# define CUB_H 500
+# define CUB_H 750
 
 //MINIMAP
 # define MAP_RADIUS 100
@@ -83,6 +84,8 @@ typedef struct s_wall
 typedef struct s_coords {
 	double	x;
 	double	y;
+	int		ix;
+	int		iy;
 }	t_coords;
 
 typedef struct s_keys
@@ -151,6 +154,7 @@ typedef struct s_cub {
 	int					mp_color;
 	int					parsing_doors;
 	t_data				doors;
+	void				*background;
 	int					w;
 	int					a;
 	int					s;
@@ -174,6 +178,9 @@ typedef struct s_cub {
 	unsigned long		t_now;
 	t_keys				key;
 }	t_cub;
+
+//cub3d.c
+int				game(t_cub *cub);
 
 //testing_prints.c
 void			print_matrix(char **matrix);
@@ -300,6 +307,7 @@ void			hit_m_wall(t_cub *cub, t_ray *ray);
 
 //pseudo_global.c
 int				*mp_unit(void);
+int				*starting_screen(void);
 
 //doors.c
 void			open_close_door(t_cub *cub);

@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:51:49 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 23:35:51 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/17 18:03:06 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	start_images(t_cub *cub)
+{
+	int	i;
+
+	cub->background = mlx_xpm_file_to_image(cub->mlx, BACKGROUND, &i, &i);
+	if (!cub->background)
+		return (1);
+	return (0);
+}
 
 int	doors(t_cub *cub)
 {
@@ -78,7 +88,7 @@ int	init_textures(t_cub *cub)
 				&cub->wall_t[i].endian);
 		i++;
 	}
-	if (doors(cub))
+	if (doors(cub) || start_images(cub))
 		return (error_init_textures(cub));
 	free_textures_char(*cub);
 	return (0);
