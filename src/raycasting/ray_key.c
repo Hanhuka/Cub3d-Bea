@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/17 17:52:53 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/18 05:41:22 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,10 @@ int	raycasting_key(int key, t_cub *cub)
 {
 	if (*starting_screen())
 	{
-		if (key == KEY_R)
+		if (key == KEY_ESC)
 		{
-			mlx_mouse_hide(cub->mlx, cub->mlx_w);
-			*starting_screen() = 0;
+			free_starting(cub);
+			close_win(cub);
 		}
 		return (1);
 	}

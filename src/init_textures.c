@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:51:49 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/17 18:03:06 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/18 05:58:34 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,18 @@ int	start_images(t_cub *cub)
 	int	i;
 
 	cub->background = mlx_xpm_file_to_image(cub->mlx, BACKGROUND, &i, &i);
-	if (!cub->background)
+	cub->start = mlx_xpm_file_to_image(cub->mlx, START, &i, &i);
+	cub->start_selected = mlx_xpm_file_to_image(cub->mlx, START_SELEC, &i, &i);
+	if (!cub->background || !cub->start || !cub->start_selected)
+	{
+		if (cub->background)
+			mlx_destroy_image(cub->mlx, cub->background);
+		if (cub->start)
+			mlx_destroy_image(cub->mlx, cub->start);
+		if (cub->start_selected)
+			mlx_destroy_image(cub->mlx, cub->start_selected);
 		return (1);
+	}
 	return (0);
 }
 

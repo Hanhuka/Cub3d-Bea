@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:56:09 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/17 17:52:35 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/18 05:55:08 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	fun_ray(t_cub *cub)
 	search_player(cub);
 	search_direction(cub);
 	search_plane(cub);
+	*mouse_cub() = *cub;
 	mlx_clear_window(cub->mlx, cub->mlx_w);
 	mlx_hook(cub->mlx_w, 2, 1L << 0, raycasting_key, cub);
 	mlx_hook(cub->mlx_w, 3, 1L << 1, key_up, cub);

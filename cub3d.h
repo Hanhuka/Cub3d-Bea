@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/17 18:06:50 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/18 05:56:24 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "get_next_line.h"
 # include "mlx-linux/mlx.h"
 
+# define START "textures/start.xpm"
+# define START_SELEC "textures/start_selected.xpm"
 # define BACKGROUND "textures/Background.xpm"
 # define DOOR_TEXTURE "textures/gate_3.xpm"
 # define CEILING 1
@@ -155,6 +157,8 @@ typedef struct s_cub {
 	int					parsing_doors;
 	t_data				doors;
 	void				*background;
+	void				*start;
+	void				*start_selected;
 	int					w;
 	int					a;
 	int					s;
@@ -181,6 +185,7 @@ typedef struct s_cub {
 
 //cub3d.c
 int				game(t_cub *cub);
+void			free_starting(t_cub *cub);
 
 //testing_prints.c
 void			print_matrix(char **matrix);
@@ -308,6 +313,7 @@ void			hit_m_wall(t_cub *cub, t_ray *ray);
 //pseudo_global.c
 int				*mp_unit(void);
 int				*starting_screen(void);
+t_cub			*mouse_cub(void);
 
 //doors.c
 void			open_close_door(t_cub *cub);

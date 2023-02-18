@@ -6,11 +6,21 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:20:45 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/17 18:07:30 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/18 05:59:13 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	free_starting(t_cub *cub)
+{
+	if (cub->background)
+		mlx_destroy_image(cub->mlx, cub->background);
+	if (cub->start)
+		mlx_destroy_image(cub->mlx, cub->start);
+	if (cub->start_selected)
+		mlx_destroy_image(cub->mlx, cub->start_selected);
+}
 
 void	starting_loop(t_cub *cub)
 {
@@ -19,7 +29,11 @@ void	starting_loop(t_cub *cub)
 	mlx_mouse_get_pos(cub->mlx, cub->mlx_w, &c.ix, &c.iy);
 	mlx_clear_window(cub->mlx, cub->mlx_w);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->background, 0, 0);
-	// printf("mouse x[%d] y[%d]\n", c.ix, c.iy);
+	if (c.ix >= 350 && c.ix <= 650 && c.iy >= 300 && c.iy <= 409)
+		mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->start, 350, 300);
+	else
+		mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->start_selected, \
+			350, 300);
 }
 
 int	game(t_cub *cub)

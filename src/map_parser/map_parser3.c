@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:41:27 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 22:15:51 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/18 01:57:08 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	check_coords(t_cub *cub, int x, int y)
 	!cub->map[y][x - 1] || cub->map[y][x - 1] == ' ' ||
 	!cub->map[y - 1][x - 1] || cub->map[y - 1][x - 1] == ' ')
 	{
-		if ((int)ft_strlen(cub->map[y + 1]) <= x + 1)
-			return (1);
+		return (1);
 	}
 	return (0);
 }
