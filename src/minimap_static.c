@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:21:36 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 15:01:00 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:36:59 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ void	print_minimap_wall_s(t_cub *cub, int m_x, int m_y)
 		{
 			w.offset = 0;
 			w.color = 0xFF00FF00;
-			minimap_wall_pixel(cub, c, w, 0);
+			minimap_wall_pixel_s(cub, c, w, 0);
 			w.color = 0xFFFF0000;
 			w.offset = -OFFSET;
-			minimap_wall_pixel(cub, c, w, 0);
+			minimap_wall_pixel_s(cub, c, w, 0);
 			w.color = 0xFF0000FF;
 			w.offset = OFFSET;
-			minimap_wall_pixel(cub, c, w, 0);
+			minimap_wall_pixel_s(cub, c, w, 0);
 		}
 	}
 }

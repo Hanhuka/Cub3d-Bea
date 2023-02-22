@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/22 17:00:14 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:27:11 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/time.h>
 # include "get_next_line.h"
 # include "mlx-linux/mlx.h"
+
+# define HAS_MOUSE 0
 
 # define START "textures/start.xpm"
 # define START_SELEC "textures/start_selected.xpm"

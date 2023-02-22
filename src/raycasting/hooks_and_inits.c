@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:56:09 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/22 15:22:03 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:26:06 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ void	fun_ray(t_cub *cub)
 	mlx_clear_window(cub->mlx, cub->mlx_w);
 	mlx_hook(cub->mlx_w, 2, 1L << 0, raycasting_key, cub);
 	mlx_hook(cub->mlx_w, 3, 1L << 1, key_up, cub);
-	mlx_mouse_hook(cub->mlx_w, mouse_hook, NULL);
+	if (HAS_MOUSE)
+		mlx_mouse_hook(cub->mlx_w, mouse_hook, NULL);
 	mlx_loop_hook(cub->mlx, game, cub);
 	mlx_hook(cub->mlx_w, 17, 0, close_win, cub);
 }
 
 void	ray_main(t_cub *cub)
 {
-	*starting_screen() = 1;
+	*starting_screen() = HAS_MOUSE;
 	cub->mlx_w = mlx_new_window(cub->mlx, CUB_W, CUB_H, "Cub3d");
 	cub->w = 0;
 	cub->a = 0;

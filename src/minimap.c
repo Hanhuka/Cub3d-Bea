@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 14:44:43 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/22 16:46:34 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:32:48 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,21 @@ void	draw_player(t_cub *cub, int height)
 	}
 }
 
-void	calc_new(t_cub *cub, t_coords *c, t_wall w)
+t_coords	calc_new(t_cub *cub, t_coords c, t_wall w)
 {
-	c->n_x = (c->x + w.offset - cub->pos_x * (*mp_unit())) * cos(w.angle)
-		- (c->y + w.offset - cub->pos_y * (*mp_unit())) * sin(w.angle);
-	c->n_y = (c->x + w.offset - cub->pos_x * (*mp_unit())) * sin(w.angle)
-		+ (c->y + w.offset - cub->pos_y * (*mp_unit())) * cos(w.angle);
+	t_coords	c2;
+
+	c2 = c;
+	c2.n_x = (c.x + w.offset - cub->pos_x * (*mp_unit())) * cos(w.angle)
+		- (c.y + w.offset - cub->pos_y * (*mp_unit())) * sin(w.angle);
+	c2.n_y = (c.x + w.offset - cub->pos_x * (*mp_unit())) * sin(w.angle)
+		+ (c.y + w.offset - cub->pos_y * (*mp_unit())) * cos(w.angle);
+	return (c2);
 }
 
 void	minimap_wall_pixel(t_cub *cub, t_coords c, t_wall w, int mode)
 {
-	calc_new(cub, &c, w);
+	c = calc_new(cub, c, w);
 	if (((cub->tab || (((c.n_x * c.n_x + c.n_y * c.n_y <= MAP_RADIUS \
 		* MAP_RADIUS) \
 		&& (cub->m == 0 || cub->m == 2)) || ((cub->m == 1 || cub->m == 3) \

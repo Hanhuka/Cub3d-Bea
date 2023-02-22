@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:51:49 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/22 15:18:37 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:14:58 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ void	free_textures(t_cub *cub)
 		mlx_destroy_image(cub->mlx, cub->start_selected);
 	if (cub->background)
 		mlx_destroy_image(cub->mlx, cub->background);
+	if (cub->parsing_doors)
+	{
+		if (cub->doors.img)
+			mlx_destroy_image(cub->mlx, cub->doors.img);
+	}
 }
 
 int	error_init_textures(t_cub *cub)
