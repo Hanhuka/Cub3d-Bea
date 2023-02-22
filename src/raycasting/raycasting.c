@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/17 17:40:45 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:59:32 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ int	raycasting_loop(t_cub *cub)
 		print_textures(cub, ray);
 		transparency_loop(cub, &ray);
 	}
-	if (!cub->m)
+	if (!cub->m || cub->m == 1)
 		minimap_loop(cub, &ray);
-	else
+	else if (cub->m == 2 || cub->m == 3)
 		minimap_loop_s(cub, &ray);
 	if (cub->l)
 		print_battery(cub);

@@ -6,10 +6,12 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/18 05:56:24 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:00:14 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// (cub->m && (x <= cub->mp_x - MAP_RADIUS || x >= cub->mp_x + MAP_RADIUS
+// 			|| y <= cub->mp_y - MAP_RADIUS || y >= cub->mp_y + MAP_RADIUS))
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -86,21 +88,11 @@ typedef struct s_wall
 typedef struct s_coords {
 	double	x;
 	double	y;
+	double	n_x;
+	double	n_y;
 	int		ix;
 	int		iy;
 }	t_coords;
-
-typedef struct s_keys
-{
-	int	r;
-	int	l;
-	int	up;
-	int	down;
-	int	w;
-	int	a;
-	int	s;
-	int	d;
-}	t_keys;
 
 typedef struct s_ray{
 	double			size;
@@ -180,7 +172,6 @@ typedef struct s_cub {
 	int					h;
 	unsigned long		t_start;
 	unsigned long		t_now;
-	t_keys				key;
 }	t_cub;
 
 //cub3d.c
@@ -249,9 +240,13 @@ void			search_direction(t_cub *cub);
 //image_printing.c
 void			draw_vector(t_cub *cub, double dir_x, double dir_y, \
 		double max_size);
-int				rgb_spectrum(void);
 void			create_image(t_cub *cub, t_data *data, int size_x, int size_y);
 void			draw_ray(t_cub *cub, t_ray ray, int color);
+
+//rgb_spectrum.c
+int				rgb_spectrum(void);
+void			rgb_spectrum2(int *red, int *green, int *blue, int angle);
+void			rgb_spectrum3(int *red, int *green, int *blue, int angle);
 
 //my_mlx_pixel.c
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -283,6 +278,7 @@ void			draw_player(t_cub *cub, int height);
 void			print_minimap_wall_fill(t_cub *cub, t_coords c, t_wall w, \
 		int offset);
 void			minimap_wall_pixel(t_cub *cub, t_coords c, t_wall w, int mode);
+void			print_outline2(t_cub *cub, int x, int y, int test);
 
 //minimap2.c
 void			print_minimap_wall(t_cub *cub, int m_x, int m_y);

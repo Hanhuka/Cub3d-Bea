@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:24:51 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/15 23:58:46 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:46:00 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,7 @@ void	print_outline(t_cub *cub)
 		{
 			test = (x - cub->mp_x) * (x - cub->mp_x)
 				+ (y - cub->mp_y) * (y - cub->mp_y);
-			if (test >= MAP_RADIUS * MAP_RADIUS)
-			{
-				if (test <= (MAP_RADIUS + MAP_OUTLINE)
-					* (MAP_RADIUS + MAP_OUTLINE))
-					my_mlx_pixel_put_drk(&(cub->frame), x, y);
-			}
-			else
-				my_mlx_pixel_put(&(cub->frame), x, y, 0);
+			print_outline2(cub, x, y, test);
 			x++;
 		}
 		y++;

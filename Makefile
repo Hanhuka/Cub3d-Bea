@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+         #
+#    By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2023/02/16 23:11:01 by hanhuka          ###   ########.fr        #
+#    Updated: 2023/02/22 17:00:37 by ralves-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address 
 RM			=	rm -f
 
 NAME		=	cub3d
@@ -25,6 +25,7 @@ SRCS_		=	cub3d.c \
 				print_transparent.c \
 				flashlight.c \
 				image_printing.c \
+				rgb_spectrum.c \
 				minimap.c \
 				minimap2.c \
 				testing_prints.c \
