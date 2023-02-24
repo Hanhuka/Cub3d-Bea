@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/24 17:05:54 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:39:58 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include "mlx-linux/mlx.h"
 
 # define HAS_MOUSE 1
+# define BATTERY_RATE 500
+# define ROT 0.01
+# define MOVE 0.05
+
+# define CUB_W 1000
+# define CUB_H 750
 
 # define START "textures/start.xpm"
 # define START_SELEC "textures/start_transp.xpm"
@@ -33,7 +39,6 @@
 # define BATTERY_TEX_B "textures/bateria_back.xpm"
 # define BATTERY_TEX_L "textures/bateria_left.xpm"
 
-# define BATTERY_TEXTURE2 "textures/just_wall.xpm"
 # define CEILING 1
 # define FLOOR 0
 
@@ -41,12 +46,6 @@
 # define C_EA 1
 # define C_SO 2
 # define C_WE 3
-
-# define ROT 0.01
-# define MOVE 0.05
-
-# define CUB_W 1000
-# define CUB_H 750
 
 //MINIMAP
 # define MAP_RADIUS 100

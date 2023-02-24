@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:20:45 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/24 16:20:11 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:38:20 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ void	starting_loop(t_cub *cub)
 	mlx_mouse_get_pos(cub->mlx, cub->mlx_w, &c.ix, &c.iy);
 	mlx_clear_window(cub->mlx, cub->mlx_w);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->background, 0, 0);
-	if (c.ix >= 350 && c.ix <= 650 && c.iy >= 300 && c.iy <= 409)
-		mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->start, 350, 300);
+	if (c.ix >= (CUB_W / 2 - 150) && c.ix <= (CUB_W / 2 + 150) && c.iy \
+		>= (CUB_H / 2 - 55) && c.iy <= (CUB_H / 2 + 55))
+		mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->start, \
+			CUB_W / 2 - 150, (CUB_H / 2 - 55));
 	else
 		mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->start_selected, \
-			350, 300);
+			CUB_W / 2 - 150, (CUB_H / 2 - 55));
 }
 
 int	game(t_cub *cub)
@@ -35,7 +37,6 @@ int	game(t_cub *cub)
 	return (1);
 }
 
-// print_vars(cub);
 int	main(int ac, char **av)
 {
 	t_cub	cub;
