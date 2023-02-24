@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/24 14:55:11 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:04:00 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	toggles(int key, t_cub *cub)
 {
-	if (key == KEY_E)
-		open_close_door(cub);
-	else if (key == KEY_C)
+	if (key == KEY_C)
 		pick_collectible(cub);
 	else if (key == KEY_R && !cub->r)
 		cub->r = 1;
@@ -85,6 +83,8 @@ void	verif_key(int key, t_cub *cub)
 		cub->up = 1;
 	else if (key == KEY_DW)
 		cub->dw = 1;
+	else if (key == KEY_E)
+		open_close_door(cub);
 	toggles(key, cub);
 }
 
@@ -110,10 +110,7 @@ int	raycasting_key(int key, t_cub *cub)
 	if (*starting_screen())
 	{
 		if (key == KEY_ESC)
-		{
-			free_starting(cub);
 			close_win(cub);
-		}
 		return (1);
 	}
 	verif_key(key, cub);

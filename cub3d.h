@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/24 15:53:18 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:05:54 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 # define START_SELEC "textures/start_transp.xpm"
 # define BACKGROUND "textures/init.xpm"
 # define DOOR_TEXTURE "textures/gate_3.xpm"
-# define BATTERY_TEXTURE "textures/bateria_front.xpm"
+# define BATTERY_TEX_F "textures/bateria_front.xpm"
+# define BATTERY_TEX_R "textures/bateria_right.xpm"
+# define BATTERY_TEX_B "textures/bateria_back.xpm"
+# define BATTERY_TEX_L "textures/bateria_left.xpm"
+
 # define BATTERY_TEXTURE2 "textures/just_wall.xpm"
 # define CEILING 1
 # define FLOOR 0
@@ -105,6 +109,12 @@ typedef struct s_coords {
 	int		ix;
 	int		iy;
 }	t_coords;
+
+typedef struct s_anim
+{
+	void			*img;
+	struct s_anim	*next;
+}				t_anim;
 
 typedef struct s_ray{
 	double			size;
@@ -187,6 +197,7 @@ typedef struct s_cub {
 	unsigned long		t_start;
 	unsigned long		t_now;
 	t_data				collec;
+	t_data				collec_l[4];
 	int					parsing_collectible;
 	int					parsing_collectible2;
 	int					num_collectible;
@@ -367,7 +378,14 @@ void			reflections_c(t_cub *cub, t_ray *ray, double *start);
 //collectible.c
 void			print_map_collectible(t_cub *cub);
 int				init_collectible(t_cub *cub);
-void			print_map_collectible2_s(t_cub *cub, int m_x, int m_y, char chr);
+void			print_map_collectible2_s(t_cub *cub, int m_x, int m_y, \
+	char chr);
 void			print_map_collectible_s(t_cub *cub);
+
+//collectible2.c
+int				init_collectible2(t_cub *cub);
+int				check_collectible(t_cub *cub);
+void			free_collect(t_cub *cub);
+void			animate_collec(t_cub *cub);
 
 #endif

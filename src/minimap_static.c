@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:21:36 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/22 17:36:59 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:14:43 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,28 @@ void	print_map_door2_s(t_cub *cub, int m_x, int m_y, char chr)
 
 void	minimap_wall_pixel_s(t_cub *cub, t_coords c, t_wall w, int mode)
 {
-	double	new_x;
-	double	new_y;
+	double	n_x;
+	double	n_y;
 
-	new_x = c.x + w.offset - cub->pos_x * (*mp_unit());
-	new_y = c.y + w.offset - cub->pos_y * (*mp_unit());
-	if ((cub->tab || (new_x * new_x + new_y * new_y <= MAP_RADIUS * MAP_RADIUS))
-		&& check_borders(new_x + cub->mp_x, new_y + cub->mp_y))
+	n_x = c.x + w.offset - cub->pos_x * (*mp_unit());
+	n_y = c.y + w.offset - cub->pos_y * (*mp_unit());
+	if (((cub->tab || (((n_x * n_x + n_y * n_y <= MAP_RADIUS \
+		* MAP_RADIUS) \
+		&& (cub->m == 0 || cub->m == 2)) || ((cub->m == 1 || cub->m == 3) \
+			&& n_x >= -MAP_RADIUS && n_x <= MAP_RADIUS \
+		&& n_y >= -MAP_RADIUS && n_y <= MAP_RADIUS))) \
+		&& check_borders(n_x + cub->mp_x, n_y + cub->mp_y)))
 	{
 		if (!mode)
-			my_mlx_pixel_put_add(&(cub->frame), new_x + cub->mp_x,
-				new_y + cub->mp_y, w.color);
+			my_mlx_pixel_put_add(&(cub->frame), n_x + cub->mp_x,
+				n_y + cub->mp_y, w.color);
 		else if (mode == 1)
-			my_mlx_pixel_put(&(cub->frame), new_x + cub->mp_x,
-				new_y + cub->mp_y, 0x00FFFFFF);
+			my_mlx_pixel_put(&(cub->frame), n_x + cub->mp_x,
+				n_y + cub->mp_y, 0x00FFFFFF);
 		else
 		{
-			my_mlx_pixel_put_door(&(cub->frame), new_x + cub->mp_x,
-				new_y + cub->mp_y);
+			my_mlx_pixel_put_door(&(cub->frame), n_x + cub->mp_x,
+				n_y + cub->mp_y);
 		}
 	}
 }

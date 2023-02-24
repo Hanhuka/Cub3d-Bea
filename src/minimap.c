@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 14:44:43 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/22 17:32:48 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:08:27 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	minimap_wall_pixel(t_cub *cub, t_coords c, t_wall w, int mode)
 void	print_outline2(t_cub *cub, int x, int y, int test)
 {
 	if ((test >= MAP_RADIUS * MAP_RADIUS && (!cub->m || cub->m == 2)) \
-		|| ((cub->m || cub->m == 3) && ((x <= cub->mp_x - MAP_RADIUS \
+		|| ((cub->m == 1 || cub->m == 3) && ((x <= cub->mp_x - MAP_RADIUS \
 			|| x >= cub->mp_x + MAP_RADIUS) || (y <= cub->mp_y - MAP_RADIUS \
 				|| y >= cub->mp_y + MAP_RADIUS))))
 	{

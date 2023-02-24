@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
+#    By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2023/02/24 14:37:19 by bshintak         ###   ########.fr        #
+#    Updated: 2023/02/24 17:13:59 by ralves-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INCLUDE		=	-I ./ mlx-linux/libmlx_Linux.a
 SRCS_		=	cub3d.c \
 				close.c \
 				collectible.c \
+				collectible2.c \
 				init_textures.c \
 				print_textures.c \
 				print_transparent_door.c \
@@ -73,14 +74,15 @@ $(_OBJ)%.o: $(_SRC)%.c
 $(NAME): $(DEPS) $(OBJS)
 	$(CC) $(CFLAGS) -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(OBJS) -o $(NAME) $(INCLUDE) -L $(_MLX)
 
-./minilibx_linux/libmlx_Linux.a:
-	make -C mlx-linux/
+./mlx-linux/libmlx_Linux.a:
+	cd mlx-linux;./configure
 
 $(_OBJ):
 	mkdir $@
 
 clean:
 	$(RM) -r $(OBJS)
+	cd mlx-linux; make clean
 
 fclean:	clean
 	$(RM) -r $(NAME)

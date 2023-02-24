@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:15:27 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 01:33:48 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:05:11 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ void	change_pos(t_cub *cub, double new_dir_x, double new_dir_y)
 	if (cub->map[(int)cub->pos_y][(int)(cub->pos_x
 		+ new_dir_x * MOVE * cub->sft)] == '0'
 		|| cub->map[(int)cub->pos_y][(int)(cub->pos_x
-		+ new_dir_x * MOVE * cub->sft)] == 'd' )
+		+ new_dir_x * MOVE * cub->sft)] == 'd'
+		|| cub->map[(int)cub->pos_y][(int)(cub->pos_x
+		+ new_dir_x * MOVE * cub->sft)] == 'b' )
 		cub->pos_x += new_dir_x * MOVE * cub->sft;
 	if (cub->map[(int)(cub->pos_y + (new_dir_y * MOVE * cub->sft))]
 		[(int)cub->pos_x] == '0' || cub->map[(int)(cub->pos_y
-			+ (new_dir_y * MOVE * cub->sft))][(int)cub->pos_x] == 'd')
+			+ (new_dir_y * MOVE * cub->sft))][(int)cub->pos_x] == 'd'
+			|| cub->map[(int)(cub->pos_y
+			+ (new_dir_y * MOVE * cub->sft))][(int)cub->pos_x] == 'b')
 		cub->pos_y += new_dir_y * MOVE * cub->sft;
 }
 

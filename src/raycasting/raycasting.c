@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/24 14:43:35 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:50:55 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	raycasting_loop(t_cub *cub)
 	ray.i = -1;
 	if (!cub->alt)
 		move_mouse(cub);
+	animate_collec(cub);
 	move(cub, cub->w - cub->s, cub->a - cub->d);
 	rotate(cub, cub->a_r - cub->a_l, cub->up - cub->dw);
 	create_image(cub, &cub->frame, CUB_W, CUB_H);

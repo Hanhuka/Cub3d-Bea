@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collectible.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 10:46:57 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/24 15:49:59 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:05:08 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,11 @@
 
 int	init_collectible(t_cub *cub)
 {
-	int	y;
-	int	x;
-
-	y = -1;
-	cub->parsing_collectible = 0;
-	while (cub->map[++y])
-	{
-		x = -1;
-		while (cub->map[y][++x])
-		{
-			if (cub->map[y][x] == 'B')
-				cub->parsing_collectible = 1;
-		}
-	}
-	if (!cub->parsing_collectible)
+	if (!check_collectible(cub))
 		return (0);
-	cub->collec.img = mlx_xpm_file_to_image(cub->mlx, BATTERY_TEXTURE,
-			&cub->collec.x_size, &cub->collec.y_size);
-	if (!cub->collec.img)
+	if (init_collectible2(cub))
 		return (1);
-	cub->collec.addr = mlx_get_data_addr(cub->collec.img,
-			&cub->collec.bits_per_pixel, &cub->collec.line_length,
-			&cub->collec.endian);
+	cub->collec = cub->collec_l[0];
 	return (0);
 }
 

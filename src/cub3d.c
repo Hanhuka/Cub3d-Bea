@@ -6,21 +6,11 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:20:45 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/22 17:25:06 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:20:11 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	free_starting(t_cub *cub)
-{
-	if (cub->background)
-		mlx_destroy_image(cub->mlx, cub->background);
-	if (cub->start)
-		mlx_destroy_image(cub->mlx, cub->start);
-	if (cub->start_selected)
-		mlx_destroy_image(cub->mlx, cub->start_selected);
-}
 
 void	starting_loop(t_cub *cub)
 {

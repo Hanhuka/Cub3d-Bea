@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:51:49 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/24 10:56:09 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:40:22 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	free_textures(t_cub *cub)
 		if (cub->doors.img)
 			mlx_destroy_image(cub->mlx, cub->doors.img);
 	}
+	if (cub->parsing_collectible)
+		free_collect(cub);
 }
 
 int	error_init_textures(t_cub *cub)
@@ -109,9 +111,7 @@ int	init_textures(t_cub *cub)
 				&cub->wall_t[i].endian);
 		i++;
 	}
-	if (init_collectible(cub))
-		return (error_init_textures(cub));
-	if (doors(cub) || start_images(cub))
+	if (doors(cub) || start_images(cub) || init_collectible(cub))
 		return (error_init_textures(cub));
 	free_textures_char(*cub);
 	return (0);

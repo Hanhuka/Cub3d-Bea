@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 22:23:52 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/24 15:56:58 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:05:33 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	pick_collectible(t_cub *cub)
 		[(int)(cub->pos_x + cub->dir_x)] == 'B')
 	{
 		cub->num_collectible = 1;
-		cub->map[(int)(cub->pos_y + cub->dir_y)][(int)(cub->pos_x + cub->dir_x)] = 'b';
+		cub->map[(int)(cub->pos_y + cub->dir_y)] \
+		[(int)(cub->pos_x + cub->dir_x)] = 'b';
 	}
 }
 
