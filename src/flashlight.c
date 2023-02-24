@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flashlight.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:10:38 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 18:35:49 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:28:30 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ unsigned long	time_ms(void)
 
 void	count_battery(t_cub *cub)
 {
+	if (cub->num_collectible)
+	{
+		cub->battery = 100;
+		cub->num_collectible = 0;
+	}
 	if (cub->f && cub->battery && (time_ms() - cub->t_start) >= 1000)
 	{
 		cub->battery--;

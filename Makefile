@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+         #
+#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2023/02/22 17:00:37 by ralves-g         ###   ########.fr        #
+#    Updated: 2023/02/24 14:37:19 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,11 @@ INCLUDE		=	-I ./ mlx-linux/libmlx_Linux.a
 
 SRCS_		=	cub3d.c \
 				close.c \
+				collectible.c \
 				init_textures.c \
 				print_textures.c \
-				print_transparent.c \
+				print_transparent_door.c \
+				print_transparent_collectible.c \
 				flashlight.c \
 				image_printing.c \
 				rgb_spectrum.c \

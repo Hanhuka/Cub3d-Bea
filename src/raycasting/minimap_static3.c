@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_static3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:36:27 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/16 22:57:31 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/24 14:31:38 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	minimap_loop_s(t_cub *cub, t_ray *ray)
 		raycasting(cub, ray, 2);
 		minimap_raycasting_s(cub, ray);
 	}
+	print_map_collectible_s(cub);
 	print_map_door_s(cub);
 	draw_player_s(cub, *mp_unit() + 5);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/22 17:27:11 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:53:18 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 # include "get_next_line.h"
 # include "mlx-linux/mlx.h"
 
-# define HAS_MOUSE 0
+# define HAS_MOUSE 1
 
 # define START "textures/start.xpm"
-# define START_SELEC "textures/start_selected.xpm"
-# define BACKGROUND "textures/Background.xpm"
+# define START_SELEC "textures/start_transp.xpm"
+# define BACKGROUND "textures/init.xpm"
 # define DOOR_TEXTURE "textures/gate_3.xpm"
+# define BATTERY_TEXTURE "textures/bateria_front.xpm"
+# define BATTERY_TEXTURE2 "textures/just_wall.xpm"
 # define CEILING 1
 # define FLOOR 0
 
@@ -50,6 +52,7 @@
 //KEYS
 # define KEY_W 119
 # define KEY_A 97
+# define KEY_C 99
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_E 101
@@ -72,12 +75,19 @@
 
 typedef struct s_data {
 	void	*img;
+	void	*img2;
 	char	*addr;
+	char	*addr2;
 	int		bits_per_pixel;
+	int		bits_per_pixel2;
 	int		line_length;
+	int		line_length2;
 	int		endian;
+	int		endian2;
 	int		x_size;
+	int		x_size2;
 	int		y_size;
+	int		y_size2;
 }	t_data;
 
 typedef struct s_wall
@@ -118,6 +128,8 @@ typedef struct s_ray{
 	int				start;
 	int				end;
 	int				side;
+	int				t_collec;
+	int				t_collec_parse;
 	int				t_walls;
 	int				t_walls_parse;
 	double			wall_x;
@@ -174,6 +186,10 @@ typedef struct s_cub {
 	int					h;
 	unsigned long		t_start;
 	unsigned long		t_now;
+	t_data				collec;
+	int					parsing_collectible;
+	int					parsing_collectible2;
+	int					num_collectible;
 }	t_cub;
 
 //cub3d.c
@@ -307,6 +323,7 @@ void			calc_delta_dist(t_ray *ray);
 void			hit_wall(t_cub *cub, t_ray *ray);
 void			hit_t_wall(t_cub *cub, t_ray *ray);
 void			hit_m_wall(t_cub *cub, t_ray *ray);
+void			hit_c_wall(t_cub *cub, t_ray *ray);
 
 //pseudo_global.c
 int				*mp_unit(void);
@@ -315,6 +332,7 @@ t_cub			*mouse_cub(void);
 
 //doors.c
 void			open_close_door(t_cub *cub);
+void			pick_collectible(t_cub *cub);
 
 //minimap_static.c
 void			minimap_wall_pixel_s(t_cub *cub, t_coords c, t_wall w, \
@@ -342,5 +360,14 @@ void			print_textures_t(t_cub *cub, t_ray ray);
 void			textures_t(t_cub *cub, t_ray *ray, double *start);
 void			reflections_t(t_cub *cub, t_ray *ray, double *start);
 void			transparency_loop(t_cub *cub, t_ray *ray);
+void			print_textures_c(t_cub *cub, t_ray ray);
+void			textures_c(t_cub *cub, t_ray *ray, double *start);
+void			reflections_c(t_cub *cub, t_ray *ray, double *start);
+
+//collectible.c
+void			print_map_collectible(t_cub *cub);
+int				init_collectible(t_cub *cub);
+void			print_map_collectible2_s(t_cub *cub, int m_x, int m_y, char chr);
+void			print_map_collectible_s(t_cub *cub);
 
 #endif

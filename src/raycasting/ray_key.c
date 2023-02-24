@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/18 06:51:12 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:55:11 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	toggles(int key, t_cub *cub)
 {
 	if (key == KEY_E)
 		open_close_door(cub);
+	else if (key == KEY_C)
+		pick_collectible(cub);
 	else if (key == KEY_R && !cub->r)
 		cub->r = 1;
 	else if (key == KEY_R && cub->r)

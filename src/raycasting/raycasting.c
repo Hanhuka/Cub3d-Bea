@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/22 14:59:32 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:43:35 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	minimap_loop(t_cub *cub, t_ray *ray)
 		raycasting(cub, ray, 2);
 		minimap_raycasting(cub, ray);
 	}
+	print_map_collectible(cub);
 	print_map_door(cub);
 	draw_player(cub, *mp_unit() + 5);
 }
@@ -66,6 +67,8 @@ void	raycasting(t_cub *cub, t_ray *ray, int opt)
 		hit_wall(cub, ray);
 	else if (opt == 1)
 		hit_t_wall(cub, ray);
+	else if (opt == 3)
+		hit_c_wall(cub, ray);
 	else
 		hit_m_wall(cub, ray);
 	ray->line_h = (int)(CUB_H / ray->perpendicular);

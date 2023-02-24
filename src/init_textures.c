@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:51:49 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/22 17:14:58 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/24 10:56:09 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int	init_textures(t_cub *cub)
 				&cub->wall_t[i].endian);
 		i++;
 	}
+	if (init_collectible(cub))
+		return (error_init_textures(cub));
 	if (doors(cub) || start_images(cub))
 		return (error_init_textures(cub));
 	free_textures_char(*cub);
