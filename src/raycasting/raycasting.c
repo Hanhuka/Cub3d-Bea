@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/24 16:50:55 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:59:06 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void	raycasting(t_cub *cub, t_ray *ray, int opt)
 		hit_wall(cub, ray);
 	else if (opt == 1)
 		hit_t_wall(cub, ray);
-	else if (opt == 3)
-		hit_c_wall(cub, ray);
 	else
 		hit_m_wall(cub, ray);
 	ray->line_h = (int)(CUB_H / ray->perpendicular);

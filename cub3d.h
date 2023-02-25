@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/24 17:39:58 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:59:54 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,6 @@ typedef struct s_ray{
 	int				start;
 	int				end;
 	int				side;
-	int				t_collec;
-	int				t_collec_parse;
 	int				t_walls;
 	int				t_walls_parse;
 	double			wall_x;
