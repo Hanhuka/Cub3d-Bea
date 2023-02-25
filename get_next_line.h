@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 16:31:21 by ralves-g          #+#    #+#             */
-/*   Updated: 2022/02/28 16:27:15 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:55:37 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <fcntl.h>
+
+#define BUFFER_SIZE 1
 
 char		*get_next_line(int fd);
 size_t		ft_strlen(const char *word);

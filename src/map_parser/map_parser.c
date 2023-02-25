@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:58 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/25 17:37:24 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:00:05 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@ int	get_color(char **rgb, t_cub *cub, int *var, int type)
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
+	free_matrix(rgb);
 	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
 	{
 		printf("Error\nRBG color values need to be >= 0 && <= 255\n");
-		free_matrix(rgb);
 		return (1);
 	}
 	cub->color_check[type] = 1;
 	cub->color[type] = (r << 16) + (g << 8) + b;
 	*var -= 1;
-	free_matrix(rgb);
 	return (0);
 }
 
@@ -66,7 +65,6 @@ int	check_for_var(char *line, t_cub *cub, int *var)
 {
 	if (!ft_strlen(line))
 	{
-		printf("No line\n");
 		free(line);
 		return (0);
 	}
