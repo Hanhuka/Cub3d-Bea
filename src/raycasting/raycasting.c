@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/25 15:59:06 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:06:11 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ int	get_side(t_ray ray)
 	else
 	{
 		if (ray.ray_dir_y > 0)
-		{
-			return (C_NO);
-		}
-		return (C_SO);
+			return (C_SO);
+		return (C_NO);
 	}
 }
 

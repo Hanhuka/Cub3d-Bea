@@ -3,8 +3,8 @@ SO ./textures/Wall_S.xpm
 EA ./textures/Wall_E.xpm
 WE ./textures/Wall_W.xpm
 
-C 000,000,11
-F 0,0,02
+C 0,0,42
+F 0,0,15
 
                                     111 1
 
