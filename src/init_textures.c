@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:51:49 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/24 16:40:22 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/25 16:47:01 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ int	init_textures(t_cub *cub)
 	int	i;
 
 	cub->mlx = mlx_init();
-	i = -1;
-	while (++i < 4)
-		cub->wall_t[i].img = NULL;
+	init_textures_null(cub);
 	i = 0;
 	while (i < 4)
 	{

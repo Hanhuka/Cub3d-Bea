@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/25 15:59:54 by ralves-g         ###   ########.fr       */
+/*   Updated: 2023/02/25 16:46:27 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,6 +316,9 @@ void			print_map_door2(t_cub *cub, int m_x, int m_y, char chr);
 //init_textures.c
 void			free_textures(t_cub *cub);
 int				init_textures(t_cub *cub);
+
+//init_textures2.c
+void			init_textures_null(t_cub *cub);
 
 //print_textures.c
 void			ceiling_color(t_cub *cub, t_ray *ray, double *start);
