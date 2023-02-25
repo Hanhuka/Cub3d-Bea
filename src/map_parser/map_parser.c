@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanhuka <hanhuka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:58 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/15 20:53:09 by hanhuka          ###   ########.fr       */
+/*   Updated: 2023/02/25 17:37:24 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	add_fc(char *line, t_cub *cub, int *var, int type)
 		i++;
 	if (i != 3)
 	{
-		printf("Error\nInvalid color format: \"%s\"", line + 2);
+		free_matrix(rgb);
+		printf("Error\nInvalid color format: \"%s\"\n", line + 2);
 		return (1);
 	}
 	if (!get_color(rgb, cub, var, type))
@@ -65,6 +66,7 @@ int	check_for_var(char *line, t_cub *cub, int *var)
 {
 	if (!ft_strlen(line))
 	{
+		printf("No line\n");
 		free(line);
 		return (0);
 	}
