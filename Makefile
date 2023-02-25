@@ -6,7 +6,7 @@
 #    By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 16:26:20 by ralves-g          #+#    #+#              #
-#    Updated: 2023/02/24 17:13:59 by ralves-g         ###   ########.fr        #
+#    Updated: 2023/02/25 16:31:12 by ralves-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address 
 RM			=	rm -f
 
-NAME		=	cub3d
+NAME		=	cub3D
 
 INCLUDE		=	-I ./ mlx-linux/libmlx_Linux.a
 
