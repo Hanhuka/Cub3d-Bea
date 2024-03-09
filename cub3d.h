@@ -20,7 +20,7 @@
 # include <math.h>
 # include <sys/time.h>
 # include "get_next_line.h"
-# include "mlx-linux/mlx.h"
+# include "mlx_linux/mlx.h"
 
 # define HAS_MOUSE 1
 # define BATTERY_RATE 500

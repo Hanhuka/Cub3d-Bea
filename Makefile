@@ -12,11 +12,12 @@
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address 
+MLX_LINUX	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 RM			=	rm -f
 
 NAME		=	cub3D
 
-INCLUDE		=	-I ./ mlx-linux/libmlx_Linux.a
+INCLUDE		=	-I ./
 
 SRCS_		=	cub3d.c \
 				close.c \
@@ -61,7 +62,7 @@ SRCS_		=	cub3d.c \
 
 SRCS		=	$(addprefix $(_SRC), $(SRCS_))
 
-DEPS		=	./mlx-linux/libmlx_Linux.a
+# DEPS		=	./mlx-linux/libmlx_Linux.a
 
 _SRC		=	./src/
 _MLX		=	./mlx-linux
@@ -72,21 +73,21 @@ all:	$(NAME)
 $(_OBJ)%.o: $(_SRC)%.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-$(NAME): $(DEPS) $(OBJS)
-	$(CC) $(CFLAGS) -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(OBJS) -o $(NAME) $(INCLUDE) -L $(_MLX)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX_LINUX) -o $(NAME) $(INCLUDE)	
 
-./mlx-linux/libmlx_Linux.a:
-	cd mlx-linux;./configure
+# ./mlx-linux/libmlx_Linux.a:
+# 	cd mlx-linux;./configure
 
 $(_OBJ):
 	mkdir $@
 
 clean:
 	$(RM) -r $(OBJS)
-	cd mlx-linux; make clean
+# cd mlx_linux; make clean
 
 fclean:	clean
 	$(RM) -r $(NAME)
-	$(RM) -r $(_MLX)libmlx_Linux.a
+# $(RM) -r $(_MLX)libmlx_Linux.a
 
 re:	fclean all
