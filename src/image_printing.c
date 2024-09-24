@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 13:08:46 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/22 17:00:22 by ralves-g         ###   ########.fr       */
+/*   Updated: 2024/09/02 12:09:39 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	create_image(t_cub *cub, t_data *data, int size_x, int size_y)
 {
 	data->img = mlx_new_image(cub->mlx, size_x, size_y);
+	data->x_size = size_x;
+	data->y_size = size_y;
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 }

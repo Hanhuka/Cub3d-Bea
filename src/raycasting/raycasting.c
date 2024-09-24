@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:40:14 by hanhuka           #+#    #+#             */
-/*   Updated: 2023/02/25 18:06:11 by ralves-g         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:40:36 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,59 @@ int	get_side(t_ray ray)
 	}
 }
 
+void print_square(t_data *img, int x, int y, int size, unsigned int color)
+{
+	int px;
+	int py;
+
+	py = -1;
+	while (++py < size) {
+		px = -1;
+		while (++px < size)
+		{
+			// printf("wall pixel at x[%d]y[%d]]\n", x + px, y + py);
+			my_mlx_pixel_put(img, x + px, y + py, color);
+		}
+	}
+}
+
+void	create_minimap_tex(t_cub *cub, int size) {
+	int	y;
+	int	x;
+
+	y = -1;
+	// printf("posx[%d]y[%d]\n", (int)(cub->pos_x), (int)cub->pos_y);
+	while (cub->map[++y])
+	{
+		x = -1;
+		while (cub->map[y][++x])
+		{
+			if (cub->map[y][x] == '1')
+			{
+				print_square(&cub->minimap_tex, (x - cub->pos_x)*+size+cub->minimap_tex.x_size/2, (y - cub->pos_y)*size+cub->minimap_tex.y_size/2, size, 0xFFFFFF);
+			}
+		}
+	}
+	print_square(&cub->minimap_tex, cub->minimap_tex.x_size/2-size/2, cub->minimap_tex.y_size/2-size/2, size, 0xFF0000);
+}
+
+void print_to_frame(t_cub *cub, t_data *img)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < img->y_size)
+	{
+		x = -1;
+		while (++x < img->x_size)
+		{
+			my_mlx_pixel_put(&cub->frame, x, y, get_image_color(img, x, y));
+		}
+	}
+}
+
+
 int	raycasting_loop(t_cub *cub)
 {
 	t_ray	ray;
@@ -106,20 +159,27 @@ int	raycasting_loop(t_cub *cub)
 	move(cub, cub->w - cub->s, cub->a - cub->d);
 	rotate(cub, cub->a_r - cub->a_l, cub->up - cub->dw);
 	create_image(cub, &cub->frame, CUB_W, CUB_H);
-	while (++ray.i < CUB_W && !cub->tab)
+	create_image(cub, &cub->minimap_tex, 200, 200);
+	create_minimap_tex(cub, 4);
+	while (++ray.i < CUB_W && (!cub->tab || !cub->minimap_show))
 	{
 		raycasting(cub, &ray, 0);
 		print_textures(cub, ray);
 		transparency_loop(cub, &ray);
 	}
-	if (!cub->m || cub->m == 1)
-		minimap_loop(cub, &ray);
-	else if (cub->m == 2 || cub->m == 3)
-		minimap_loop_s(cub, &ray);
+	if (cub->minimap_show)
+	{
+		if (!cub->m || cub->m == 1)
+			minimap_loop(cub, &ray);
+		else if (cub->m == 2 || cub->m == 3)
+			minimap_loop_s(cub, &ray);
+	}
 	if (cub->l)
 		print_battery(cub);
+	// print_to_frame(cub, &cub->minimap_tex);
 	mlx_clear_window(cub->mlx, cub->mlx_w);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_w, cub->frame.img, 0, 0);
 	mlx_destroy_image(cub->mlx, cub->frame.img);
+	mlx_destroy_image(cub->mlx, cub->minimap_tex.img);
 	return (0);
 }

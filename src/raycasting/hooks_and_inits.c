@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:56:09 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/22 17:26:06 by ralves-g         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:38:39 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ray_main(t_cub *cub)
 	cub->f = 0;
 	cub->l = 0;
 	cub->battery = 100;
+	cub->minimap_wall = 0;
+	cub->minimap_show = 1;
 	cub->a_r = 0;
 	cub->a_l = 0;
 	cub->h = 0;

@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:17:31 by ralves-g          #+#    #+#             */
-/*   Updated: 2023/02/25 16:46:27 by ralves-g         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:53:08 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,20 @@
 # include "get_next_line.h"
 # include "mlx_linux/mlx.h"
 
+# define HAS_MINIMAP 1
 # define HAS_MOUSE 1
 # define BATTERY_RATE 500
 # define ROT 0.01
 # define MOVE 0.05
 
-# define CUB_W 1000
-# define CUB_H 750
+# define MINIMAP_WALL 0
+# define MINIMPWL_N 0xf87fb0
+# define MINIMPWL_S 0xf49296
+# define MINIMPWL_W 0x92f4e8
+# define MINIMPWL_E 0xbaf492
+
+# define CUB_W 1920
+# define CUB_H 1080
 
 # define START "textures/start.xpm"
 # define START_SELEC "textures/start_transp.xpm"
@@ -121,7 +128,7 @@ typedef struct s_ray{
 	double			camera_x;
 	double			perpendicular;
 	double			ray_dir_x;
-	double			ray_dir_y;
+	double			ray_dir_y;	
 	double			map_dir_x;
 	double			map_dir_y;
 	double			delta_dist_x;
@@ -162,6 +169,7 @@ typedef struct s_cub {
 	void				*mlx;
 	void				*mlx_w;
 	t_data				frame;
+	t_data				minimap_tex;
 	int					mp_x;
 	int					mp_y;
 	int					mp_u;
@@ -180,6 +188,8 @@ typedef struct s_cub {
 	int					m;
 	int					f;
 	int					l;
+	int					minimap_wall;
+	int 				minimap_show;
 	double				f_euclidean;
 	int					battery;
 	int					a_r;

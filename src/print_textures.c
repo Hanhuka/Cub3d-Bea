@@ -6,7 +6,7 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:53:12 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/16 18:38:26 by ralves-g         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:41:22 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,50 @@ void	textures(t_cub *cub, t_ray *ray, double *start, int *side)
 			- cub->wall_t[tmp_side].x_size * ray->wall_x,
 			cub->wall_t[tmp_side].y_size
 			* ((ray->start - tmp_start + 1) / ray->size)));
+	if ((((CUB_W - ray->i - 1 - CUB_W / 2) * (CUB_W - ray->i - 1
+					- CUB_W / 2) + (ray->start - CUB_H / 2) * (ray->start
+					- CUB_H / 2) >= 175 * 175) || (!cub->f || !cub->battery))
+		&& cub->l)
+	{
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+		my_mlx_pixel_put_drk(&cub->frame, CUB_W - ray->i - 1, ray->start);
+	}
+	*start = tmp_start;
+	*side = tmp_side;
+}
+
+unsigned int color_by_side(int side)
+{
+	if (side == 0)
+		return (MINIMPWL_N);
+	if (side == 1)
+		return (MINIMPWL_W);
+	if (side == 2)
+		return (MINIMPWL_S);
+	return (MINIMPWL_E);
+}
+
+void	textures2(t_cub *cub, t_ray *ray, double *start, int *side)
+{
+	double			tmp_start;
+	int				tmp_side;
+	unsigned int color;
+
+	tmp_start = *start;
+	tmp_side = *side;
+	color = get_image_color(&cub->minimap_tex, cub->minimap_tex.x_size
+			- cub->minimap_tex.x_size * ray->wall_x,
+			cub->minimap_tex.y_size
+			* ((ray->start - tmp_start + 1) / ray->size));
+	// printf("color = %x\n", color);
+	if (color == 0)
+	{
+		color = color_by_side(*side);
+	}
+	my_mlx_pixel_put(&cub->frame, CUB_W - ray->i - 1, ray->start,
+		color);
 	if ((((CUB_W - ray->i - 1 - CUB_W / 2) * (CUB_W - ray->i - 1
 					- CUB_W / 2) + (ray->start - CUB_H / 2) * (ray->start
 					- CUB_H / 2) >= 175 * 175) || (!cub->f || !cub->battery))
@@ -105,7 +149,13 @@ void	print_textures(t_cub *cub, t_ray ray)
 	while (ray.start <= ray.end)
 	{
 		if (ray.start >= 0 && ray.start <= CUB_H)
-			textures(cub, &ray, &start, &side);
+		{
+			
+			if (!cub->minimap_wall)
+				textures(cub, &ray, &start, &side);
+			else
+				textures2(cub, &ray, &start, &side);
+		}
 		if (start * 2 + ray.size * 2 - ray.start >= 0 && start * 2
 			+ ray.size * 2 - ray.start <= CUB_H && cub->r)
 			reflections(cub, &ray, &start, &side);

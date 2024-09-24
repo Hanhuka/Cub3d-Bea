@@ -6,11 +6,19 @@
 /*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:00:23 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/25 15:59:44 by ralves-g         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:03:18 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+void	toggles2(int key, t_cub *cub)
+{
+	if (key == 'n')
+		cub->minimap_show = 1 + cub->minimap_show * -1;
+	if (key == 'p')
+		cub->minimap_wall = 1 + cub->minimap_wall * -1;
+}
 
 void	toggles(int key, t_cub *cub)
 {
@@ -38,6 +46,7 @@ void	toggles(int key, t_cub *cub)
 		cub->l = 0;
 		cub->f = 0;
 	}
+	toggles2(key, cub);
 }
 
 int	key_up(int key, t_cub *cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_transparent_collectible.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ralves-g <ralves-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:17:43 by bshintak          #+#    #+#             */
-/*   Updated: 2023/02/24 15:49:37 by bshintak         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:10:44 by ralves-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
